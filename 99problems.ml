@@ -49,6 +49,15 @@ let rec flatten nlist =
      | Many h :: t -> flatten_helper (flatten_helper acc lst) t in
     List.rev (flatten_helper [] nlist)
 
+(* eliminate consecutive duplicates of list elements *)
+let rec elim_dups l = 
+    match l with 
+    | [] -> []
+    | [a] -> [a]
+    | a :: b :: t -> if a = b then elim_dups (b::t) else a :: elim_dups (b :: t)
+
+(* pack consecutive duplicates of list elements into sublists *)
+
 
 
 
